@@ -63,14 +63,13 @@ public class Arrangement implements Comparable<Arrangement> {
   @Override
   public String toString() {
     return """
-            
         Arrangement information:
         Arrangement number: %d
         Arrangement name: %s
         Arrangement place: %s
         Arrangement organizer: %s
         Arrangement type: %s
-        Arrangement date: %d
+        Arrangement date: %d 
         """.formatted(arrangementNr, arrangementName, arrangementPlace, arrangementOrganizer,
         arrangementType, arrangementDate);
   }
