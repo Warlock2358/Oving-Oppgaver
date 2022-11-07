@@ -69,7 +69,7 @@ public class Arrangement implements Comparable<Arrangement> {
         Arrangement place: %s
         Arrangement organizer: %s
         Arrangement type: %s
-        Arrangement date: %d 
+        Arrangement date: %d
         """.formatted(arrangementNr, arrangementName, arrangementPlace, arrangementOrganizer,
         arrangementType, arrangementDate);
   }
