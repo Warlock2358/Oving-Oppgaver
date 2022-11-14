@@ -36,10 +36,7 @@ public class ArrangementRegister {
    * @return The arrangementList.
    */
   public ArrayList<Arrangement> getArrangementList() {
-    ArrayList<Arrangement> arrangements = new ArrayList<>();
-    for (Arrangement item : arrangementList) {
-      arrangements.add(item);
-    }
+    ArrayList<Arrangement> arrangements = new ArrayList<>(arrangementList);
     return arrangements;
   }
 

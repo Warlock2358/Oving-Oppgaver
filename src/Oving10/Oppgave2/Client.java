@@ -5,8 +5,8 @@ import java.util.Scanner;
 
 public class Client {
 
-  public Scanner in = new Scanner(System.in);
-  public MenuRegister menuRegister = new MenuRegister();
+  private Scanner in = new Scanner(System.in);
+  private MenuRegister menuRegister = new MenuRegister();
 
   @SuppressWarnings("InfiniteLoopStatement")
   public static void main(String[] args) {
@@ -21,6 +21,7 @@ public class Client {
   public void testData() {
     menuRegister.registerNewDish("Chicken", 100, "Main", "Chicken with rice");
     menuRegister.registerNewDish("Pulled pork", 200, "Main", "Pulled pork with barbeque sauce");
+    menuRegister.registerNewDish("Beef", 300, "Main", "Beef with potatoes");
     menuRegister.registerNewDish("Salad", 75, "Side", "Salad with dressing");
     menuRegister.registerNewDish("Fries", 20, "Side", "Fries with ketchup");
     menuRegister.registerNewDish("Ice cream", 50, "Dessert", "Ice cream with chocolate sauce");
@@ -35,8 +36,11 @@ public class Client {
     System.out.println("4. Get all dishes");
     System.out.println("5. Get dishes by name");
     System.out.println("6. Get dishes by type");
-    System.out.println("7. Get menus with price interval");
-    System.out.println("8. Exit");
+    System.out.println("7. Get description of a dish");
+    System.out.println("8. Add dish to menu");
+    System.out.println("9. Get menu by name");
+    System.out.println("10. Get menus with price interval");
+    System.out.println("11. Exit");
     System.out.print("Choose an option: ");
     int option = in.nextInt();
     in.nextLine();
@@ -57,12 +61,32 @@ public class Client {
         String type = in.nextLine();
         findDishesByType(type);
       }
-      case 7 -> getMenusWithPriceInterval();
-      case 8 -> {
+      case 7 -> {
+        System.out.print("Enter name: ");
+        String name = in.nextLine();
+        getDescriptionOfDish(name);
+      }
+      case 8 -> addDishToMenu();
+      case 9 -> {
+        System.out.print("Enter name: ");
+        String name = in.nextLine();
+        findMenuByName(name);
+      }
+      case 10 -> getMenusWithPriceInterval();
+      case 11 -> {
         System.out.println("Exiting...");
         System.exit(0);
       }
       default -> System.out.println("Invalid option");
+    }
+  }
+
+  private void findMenuByName(String name) {
+    Menu menu = menuRegister.getMenuByName(name);
+    if (menu != null) {
+      System.out.println(menu);
+    } else {
+      System.out.println("Menu not found");
     }
   }
 
@@ -129,6 +153,8 @@ public class Client {
   public void registerNewMenu() {
     System.out.println("Enter menu name: ");
     String menuName = in.nextLine();
+    menuRegister.registerNewMenu(menuName);
+    System.out.println("New menu registered:");
     System.out.println("Enter dishes to add to menu (enter 0 to finish):");
     ArrayList<Dish> dishes = new ArrayList<>();
     String name;
@@ -141,16 +167,43 @@ public class Client {
       ArrayList<Dish> dishesByName = menuRegister.getDishesByName(name);
       if (dishesByName.size() > 0) {
         dishes.add(dishesByName.get(0));
-        System.out.println(name + "was added to the menu");
+        System.out.println(name + " was added to the menu");
       } else {
         System.out.println("No dishes with name " + name);
       }
     }
     System.out.println();
 
-    menuRegister.registerNewMenu(menuName);
-    System.out.println("New menu registered:");
-    System.out.println(dishes);
+    menuRegister.addDishesToMenu(menuName, dishes);
+    System.out.println(menuName + " was registered with the following dishes:");
+    for (Dish dish : dishes) {
+      System.out.print(dish);
+    }
+  }
+
+  public void getDescriptionOfDish(String name) {
+    ArrayList<Dish> dishesByName = menuRegister.getDishesByName(name);
+    if (dishesByName.size() > 0) {
+      System.out.println("Description of " + name + ":");
+      System.out.println(dishesByName.get(0).getDescription());
+    } else {
+      System.out.println("No dishes with name " + name);
+    }
+  }
+
+  public void addDishToMenu() {
+    System.out.println("Enter menu name: ");
+    String menuName = in.nextLine();
+    Menu menuByName = menuRegister.getMenuByName(menuName);
+    System.out.println("Enter dish to add to menu: ");
+    String name = in.nextLine();
+    ArrayList<Dish> dishesByName = menuRegister.getDishesByName(name);
+    if (dishesByName.size() > 0) {
+      menuRegister.addDishToMenu(menuByName, dishesByName.get(0));
+      System.out.println(name + " was added to the menu");
+    } else {
+      System.out.println("No dishes with name " + name);
+    }
   }
 
   public void getMenusWithPriceInterval() {

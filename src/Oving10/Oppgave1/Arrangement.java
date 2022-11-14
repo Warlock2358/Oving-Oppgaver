@@ -29,6 +29,15 @@ public class Arrangement implements Comparable<Arrangement> {
     this.arrangementDate = arrangementDate;
   }
 
+  public Arrangement(Arrangement arrangements) {
+    this.arrangementNr = arrangements.arrangementNr;
+    this.arrangementName = arrangements.arrangementName;
+    this.arrangementPlace = arrangements.arrangementPlace;
+    this.arrangementOrganizer = arrangements.arrangementOrganizer;
+    this.arrangementType = arrangements.arrangementType;
+    this.arrangementDate = arrangements.arrangementDate;
+  }
+
   /**
    * This get method is used to fetch the arrangement place.
    *

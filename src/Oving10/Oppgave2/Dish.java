@@ -3,9 +3,9 @@ package Oving10.Oppgave2;
 public class Dish {
 
   private final String name;
-  private final int price;
+  private int price;
   private final String type;
-  private final String description;
+  private String description;
 
   /**
    * This constructor creates a Dish object.
@@ -59,6 +59,24 @@ public class Dish {
   }
 
   /**
+   * This set method is used to set the price of the dish.
+   *
+   * @param price The price of the dish.
+   */
+  public void setPrice(int price) {
+    this.price = price;
+  }
+
+  /**
+   * This set method is used to set the description of the dish.
+   *
+   * @param description The description of the dish.
+   */
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+  /**
    * This method is used to override the toString method. So that the object can be printed out in a
    * readable format.
    */
@@ -77,7 +95,7 @@ public class Dish {
    */
   public String toSmallString() {
     return """
-        Dish name: %s
+        \nDish name: %s
         Dish price: %d kr
         """.formatted(name, price);
   }

@@ -3,6 +3,7 @@ package Oving10.Oppgave2;
 import java.util.ArrayList;
 
 public class Menu {
+
   private final ArrayList<Dish> dishes;
 
   private final String name;

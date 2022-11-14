@@ -48,9 +48,21 @@ public class MenuRegister {
     return dishesByType;
   }
 
+
   public void registerNewMenu(String name) {
     Menu newMenu = new Menu(name);
     menuList.add(newMenu);
+  }
+  public void addDishToMenu(Menu menu, Dish dish) {
+    menu.getMenuDishes().add(dish);
+  }
+  public Menu getMenuByName(String name) {
+    for (Menu menu : menuList) {
+      if (menu.getName().equals(name)) {
+        return menu;
+      }
+    }
+    return null;
   }
 
   public ArrayList<Menu> getMenusWithPriceInterval(double minPrice, double maxPrice) {
@@ -61,5 +73,12 @@ public class MenuRegister {
       }
     }
     return menusWithPriceInterval;
+  }
+
+  public void addDishesToMenu(String menuName, ArrayList<Dish> dishes) {
+    Menu menu = getMenuByName(menuName);
+    for (Dish dish : dishes) {
+      menu.getMenuDishes().add(dish);
+    }
   }
 }
