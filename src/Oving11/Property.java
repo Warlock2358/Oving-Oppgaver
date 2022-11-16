@@ -1,6 +1,7 @@
 package Oving11;
 
 public class Property {
+
   private int municipalityNumber;
   private final int lotNumber;
   private final int sectionNumber;
@@ -11,7 +12,8 @@ public class Property {
 
   public Property(int municipalityNumber, int lotNumber, int sectionNumber, String municipalityName,
       String lotName, String nameOfOwner, double area) {
-    testValues(municipalityNumber, lotNumber, sectionNumber, area, municipalityName, lotName, nameOfOwner); // Try catch in user interface
+    testValues(municipalityNumber, lotNumber, sectionNumber, area, municipalityName,
+        nameOfOwner); // Try catch in user interface
     this.municipalityNumber = municipalityNumber;
     this.lotNumber = lotNumber;
     this.sectionNumber = sectionNumber;
@@ -31,7 +33,8 @@ public class Property {
     this.area = property.area;
   }
 
-  public void testValues(int municipalityNumber, int lotNumber, int sectionNumber, double area, String municipalityName, String lotName, String nameOfOwner) {
+  public void testValues(int municipalityNumber, int lotNumber, int sectionNumber, double area,
+      String municipalityName, String nameOfOwner) {
     if (municipalityNumber < 101 || municipalityNumber > 5054) {
       throw new IllegalArgumentException("Municipality number must be between 101 and 5054");
     }
@@ -46,9 +49,6 @@ public class Property {
     }
     if (municipalityName == null || municipalityName.isBlank()) {
       throw new IllegalArgumentException("Municipality name must be a string");
-    }
-    if (lotName == null || lotName.isBlank()) {
-      throw new IllegalArgumentException("Lot name must be a string");
     }
     if (nameOfOwner == null || nameOfOwner.isBlank()) {
       throw new IllegalArgumentException("Name of owner must be a string");
@@ -85,7 +85,7 @@ public class Property {
 
   public void setMunicipalityNumber(int municipalityNumber) {
     try {
-      testValues(municipalityNumber, lotNumber, sectionNumber, area, municipalityName, lotName, nameOfOwner);
+      testValues(municipalityNumber, lotNumber, sectionNumber, area, municipalityName, nameOfOwner);
     } catch (IllegalArgumentException e) {
       System.out.println(e.getMessage());
     }
@@ -94,7 +94,7 @@ public class Property {
 
   public void setMunicipalityName(String municipalityName) {
     try {
-      testValues(municipalityNumber, lotNumber, sectionNumber, area, municipalityName, lotName, nameOfOwner);
+      testValues(municipalityNumber, lotNumber, sectionNumber, area, municipalityName, nameOfOwner);
     } catch (IllegalArgumentException e) {
       System.out.println(e.getMessage());
     }
@@ -102,8 +102,8 @@ public class Property {
   }
 
   public void setLotName(String lotName) {
-    try{
-      testValues(municipalityNumber, lotNumber, sectionNumber, area, municipalityName, lotName, nameOfOwner);
+    try {
+      testValues(municipalityNumber, lotNumber, sectionNumber, area, municipalityName, nameOfOwner);
     } catch (IllegalArgumentException e) {
       System.out.println(e.getMessage());
     }
@@ -112,7 +112,7 @@ public class Property {
 
   public void setNameOfOwner(String nameOfOwner) {
     try {
-      testValues(municipalityNumber, lotNumber, sectionNumber, area, municipalityName, lotName, nameOfOwner);
+      testValues(municipalityNumber, lotNumber, sectionNumber, area, municipalityName, nameOfOwner);
     } catch (IllegalArgumentException e) {
       System.out.println(e.getMessage());
     }
@@ -125,14 +125,14 @@ public class Property {
 
   public String toString() {
     StringBuilder sb = new StringBuilder();
-
+    sb.append("\n").append("Municipality: ").append(this.getMunicipalityName()).append("\n")
+        .append("Property id: ").append(this.getPropertyId()).append("\n")
+        .append("Area: ").append(this.getArea()).append("m^2").append("\n").append("Owner: ")
+        .append(this.getNameOfOwner());
     if (this.getLotName().equals("")) {
-      return sb.append("Municipality: ").append(this.getMunicipalityName()).append(", property id: ").append(this.getPropertyId())
-          .append(", area: ").append(this.getArea()).append("m^2, owner: ").append(this.getNameOfOwner()).toString();
+      return sb.append("\n").toString();
     } else {
-      return sb.append("Municipality: ").append(this.getMunicipalityName()).append(", property id: ").append(this.getPropertyId())
-          .append(", area: ").append(this.getArea()).append("m^2, owner: ").append(this.getNameOfOwner()).append(", lot name: ")
-          .append(this.getLotName()).toString();
+      return sb.append("\n").append("Lot name: ").append(this.getLotName()).append("\n").toString();
     }
   }
 }
